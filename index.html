@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Joke - Unlimited</title>
+    <link rel="shortcut icon" href="https://www.google.com/s2/favicons?domain=www.joke.org" type="image/x-icon">
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="genre-con">
+      <p>Genre: <strong id="genreText">Any</strong></p>
+    </div>
+    <section class="container">
+      <img src="assets/loading.svg" class="loading" alt="" />
+      <p class="info">Click <strong>Get Joke</strong> To get new jokes</p>
+      <div class="joke-container">
+        <div class="setup holder">
+          <span style="color: #1aff1a" class="tag">Setup:</span>
+          <p class="setText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, aspernatur.</p>
+        </div>
+        <div class="delivery holder">
+          <span style="color: #ff7733" class="tag">Delivery:</span>
+          <p class="deliveryText">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam explicabo illo hic, blanditiis quaerat
+            corporis.
+          </p>
+        </div>
+      </div>
+      <button id="btn">Get Joke</button>
+    </section>
+    <aside class="hidden">
+      <div class="nav-bar">
+        <i class="fa-regular fa-address-card"></i>
+        <i></i>
+      </div>
+      <section class="nav-main">
+        <p class="radio-heading">1. Categories</p>
+        <div class="input-sleaction">
+          <div class="input-container">
+            <div class="radio">
+              <label for="Any">Any</label>
+              <input type="radio" id="Any" name="radio" checked />
+            </div>
+            <div class="radio">
+              <label for="Programming">Programming</label>
+              <input type="radio" id="Programming" name="radio" />
+            </div>
+            <div class="radio">
+              <label for="Misc">Misc</label>
+              <input type="radio" id="Misc" name="radio" />
+            </div>
+            <div class="radio">
+              <label for="Dark">Dark</label>
+              <input type="radio" id="Dark" name="radio" />
+            </div>
+            <div class="radio">
+              <label for="Pun">Pun</label>
+              <input type="radio" id="Pun" name="radio" />
+            </div>
+            <div class="radio">
+              <label for="Spooky">Spooky</label>
+              <input type="radio" id="Spooky" name="radio" />
+            </div>
+          </div>
+          <div class="btn-conform">
+            <button>Cencel</button>
+            <button id="apply-btn">Apply</button>
+          </div>
+        </div>
+      </section>
+    </aside>
+    <i class="fa-solid fa-bars" id="menu-bar"></i>
+    <script src="app.js"></script>
+  </body>
+</html>
