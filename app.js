@@ -7,13 +7,20 @@ const btn = document.getElementById("btn");
 const setupText = document.querySelector(".setText");
 const deliveryText = document.querySelector(".deliveryText");
 const genreText = document.getElementById("genreText");
-const container = document.querySelector(".joke-container");
+const jokeContainer = document.querySelector(".joke-container");
 const loading = document.querySelector(".loading");
 const info = document.querySelector(".info");
 const radio = document.querySelectorAll(".radio > input");
 const applyBtn = document.getElementById("apply-btn");
-console.log(radio);
 
+const storageApi = localStorage.getItem("api");
+
+if (localStorage.key("api") === "api") {
+  getNewJoke(storageApi);
+  console.log("true");
+} else {
+  homePage();
+}
 radio.forEach((e) => {
   e.addEventListener("change", function () {
     if (e.checked === true) {
@@ -24,14 +31,8 @@ radio.forEach((e) => {
   });
 });
 applyBtn.addEventListener("click", function () {
-  const storageApi = localStorage.getItem("api");
-  getNewJoke(storageApi);
   toggleSideBar();
 });
-
-container.classList.add("hidden");
-loading.classList.add("hidden");
-
 const clickSound = new Audio("assets/btn-click.wav");
 
 const jokeStorage = [];
@@ -44,9 +45,9 @@ menuBar.addEventListener("click", () => {
 });
 
 function getNewJoke(apiString) {
-  clickSound.play();
+  // clickSound.play();
   loading.classList.remove("hidden");
-  container.classList.add("hidden");
+  jokeContainer.classList.add("hidden");
   info.classList.add("hidden");
   fetch(apiString)
     .then((response) => response.json())
@@ -57,7 +58,7 @@ function getNewJoke(apiString) {
       setupText.textContent = setup;
       deliveryText.textContent = delivery;
       genreText.textContent = genre;
-      container.classList.remove("hidden");
+      jokeContainer.classList.remove("hidden");
       loading.classList.add("hidden");
     })
     .catch((error) => {
@@ -73,4 +74,9 @@ function toggleSideBar() {
   aside.classList.toggle("hidden", !isHidden);
   menuBar.classList.toggle("fa-bars");
   menuBar.classList.toggle("fa-xmark");
+}
+
+function homePage() {
+  jokeContainer.classList.add("hidden");
+  loading.classList.add("hidden");
 }
