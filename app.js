@@ -36,8 +36,13 @@ applyBtn.addEventListener("click", function () {
 const clickSound = new Audio("assets/btn-click.wav");
 
 const jokeStorage = [];
+
 btn.addEventListener("click", function () {
-  getNewJoke(api);
+  if (localStorage.key("api") === "api") {
+    getNewJoke(storageApi);
+  } else {
+    getNewJoke(api);
+  }
 });
 
 menuBar.addEventListener("click", () => {
