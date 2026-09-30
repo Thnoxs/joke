@@ -82,10 +82,10 @@ aside {
 }
 .fa-arrow-rotate-right {
   cursor: pointer;
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 .fa-arrow-rotate-right:hover {
-  color: hsl(0, 100%, 80%);
+  color: hsl(213, 100%, 70%);
 }
 #menu-bar {
   font-size: 20px;
@@ -124,23 +124,24 @@ aside {
   align-items: center;
   cursor: pointer;
   padding: 0 20px;
+  transition: all 0.3s;
 }
 .radio:active {
   transform: translateY(1.5px);
 }
-.radio:hover {
-  border-radius: 2px;
-  /* background: #2f2f2f; */
-  background: rgba(2, 116, 255, 0.3);
+.radio.active {
+  /* background: rgba(2, 116, 255, 0.3); */
+  background: linear-gradient(to right, rgba(0, 128, 0, 0.405) 85%, #0274ff21 0%);
 }
 .radio > label {
   color: hsl(0, 0%, 80%);
   padding: 10px 0px;
   width: 100%;
   cursor: pointer;
+  transition: all 0.3s;
 }
 .radio > label:hover {
-  color: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 95%);
   padding: 10px 0px;
   width: 100%;
   cursor: pointer;

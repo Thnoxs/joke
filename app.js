@@ -1,4 +1,4 @@
-let apiString = "https://v2.jokeapi.dev/joke/Any?type=twopart"; 
+let apiString = "https://v2.jokeapi.dev/joke/Any?type=twopart";
 
 const menuBar = document.getElementById("menu-bar");
 const aside = document.querySelector("aside");
@@ -9,17 +9,37 @@ const genreText = document.getElementById("genreText");
 const jokeContainer = document.querySelector(".joke-container");
 const loading = document.querySelector(".loading");
 const info = document.querySelector(".info");
-const radio = document.querySelectorAll(".radio > input");
+const radioInputs = document.querySelectorAll(".radio > input");
+const radio = document.querySelectorAll(".radio");
 const applyBtn = document.getElementById("apply-btn");
 const deleteAPI = document.querySelector(".fa-arrow-rotate-right");
 
-radio.forEach((e) => {
+menuBar.addEventListener("click", () => {
+  toggleSideBar();
+});
+
+radioInputs.forEach((e) => {
   e.addEventListener("change", function () {
     if (e.checked === true) {
+      localStorage.setItem("categorie", e.id);
       apiString = `https://v2.jokeapi.dev/joke/${e.id}?type=twopart`;
     }
   });
 });
+
+radio.forEach((e) => {
+  const categorie = localStorage.getItem("categorie");
+  e.addEventListener("click", function () {
+    removeActive();
+    e.classList.add("active");
+  });
+  if (e.children[0].textContent === categorie) {
+    removeActive();
+    e.children[1].checked = true;
+    e.classList.add("active");
+  }
+});
+
 applyBtn.addEventListener("click", function () {
   localStorage.setItem("api", apiString);
   toggleSideBar();
@@ -27,7 +47,7 @@ applyBtn.addEventListener("click", function () {
 });
 
 const storageApi = localStorage.getItem("api");
-const hasAPI = localStorage.key("api") === "api";
+const hasAPI = localStorage.getItem("api") !== null;
 
 if (hasAPI) {
   getNewJoke(storageApi);
@@ -38,14 +58,9 @@ if (hasAPI) {
 btn.addEventListener("click", function () {
   if (hasAPI) {
     getNewJoke(storageApi);
-    console.log(storageApi);
   } else {
     getNewJoke();
   }
-});
-
-menuBar.addEventListener("click", () => {
-  toggleSideBar();
 });
 
 function getNewJoke(newAPI = apiString) {
@@ -77,13 +92,26 @@ function toggleSideBar() {
 }
 
 function homePage() {
-  genreText.textContent = "Not sleacted"
+  genreText.textContent = "Any";
   jokeContainer.classList.add("hidden");
   loading.classList.add("hidden");
 }
-
+function removeActive() {
+  radio.forEach((e) => {
+    e.classList.remove("active");
+  });
+}
 deleteAPI.addEventListener("click", function () {
-  localStorage.clear();
-  toggleSideBar();
-  location.reload();
+  if (hasAPI) {
+    const askPermission = window.confirm("Are you really wont to delete API? 🤔");
+    if (askPermission) {
+      localStorage.clear();
+      toggleSideBar();
+      location.reload();
+    } else {
+      console.log("Permission denied 🙅");
+    }
+  } else {
+    window.alert("Sorry.. You dont have any Custom API yet 🫣");
+  }
 });
